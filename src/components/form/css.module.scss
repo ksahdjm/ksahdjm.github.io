@@ -1,0 +1,261 @@
+@import "../variables.css";
+
+.field {
+    clear: both;
+    margin: 0em 0em 1em;
+
+    label {
+        display: block;
+        margin: 0em 0em 0.28571429rem 0em;
+        color: --primary-color;
+        font-size: 0.92857143em;
+        font-weight: bold;
+        text-transform: none;
+    }
+
+}
+
+.input {
+    input {
+        font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        margin: 0em;
+        outline: none;
+        -webkit-appearance: none;
+        line-height: 1.21428571em;
+        padding: 0.67857143em 1em;
+        font-size: 1em;
+        background: #FFFFFF;
+        border: 1px solid rgba(34, 36, 38, 0.15);
+        color: var(--primary-color);
+        border-radius: 0.28571429rem;
+        -webkit-box-shadow: 0em 0em 0em 0em transparent inset;
+        box-shadow: 0em 0em 0em 0em transparent inset;
+        -webkit-transition: color 0.1s ease, border-color 0.1s ease;
+        transition: color 0.1s ease, border-color 0.1s ease;
+        width: 100%;
+        vertical-align: top;
+
+        &:focus {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 0.28571429rem;
+            background: #FFFFFF;
+            -webkit-box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
+            box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
+        }
+    }
+}
+
+.checkbox,
+.radio {
+    clear: both;
+    margin: 0em 0em 1em;
+    label {
+        display: flex;
+        align-items: center;
+
+    }
+
+    input {
+        --active: var(--primary-color);
+        --active-inner: #fff;
+        --focus: 2px var(--highlight-color);
+        --border: var(--secondary-color);
+        --border-hover: var(--primary-color);
+        --background: #fff;
+        --disabled: #f6f8ff;
+        --disabled-inner: #e1e6f9;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        height: 21px;
+        outline: none;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        margin: 0;
+        cursor: pointer;
+        border: 1px solid var(--bc, var(--border));
+        background: var(--b, var(--background));
+        transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+        margin-right: 4px;
+
+        &:after {
+            content: "";
+            display: block;
+            left: 0;
+            top: 0;
+            position: absolute;
+            transition: transform var(--d-t, 0.3s) var(--d-t-e, ease),
+                opacity var(--d-o, 0.2s);
+        }
+
+        &:checked {
+            --b: var(--active);
+            --bc: var(--active);
+            --d-o: 0.3s;
+            --d-t: 0.6s;
+            --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+        }
+
+        &:disabled {
+            --b: var(--disabled);
+            cursor: not-allowed;
+            opacity: 0.9;
+
+            &:checked {
+                --b: var(--disabled-inner);
+                --bc: var(--border);
+            }
+
+            &+label {
+                cursor: not-allowed;
+            }
+        }
+
+        &:hover {
+            &:not(:checked) {
+                &:not(:disabled) {
+                    --bc: var(--border-hover);
+                }
+            }
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 var(--focus);
+        }
+
+        width: 21px;
+
+        &:after {
+            opacity: var(--o, 0);
+        }
+
+        &:checked {
+            --o: 1;
+        }
+
+        &+label {
+            font-size: 14px;
+            line-height: 21px;
+            display: inline-block;
+            vertical-align: top;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+    }
+
+    input[type="checkbox"] {
+
+        border-radius: 7px;
+
+        &:after {
+            width: 5px;
+            height: 9px;
+            border: 2px solid var(--active-inner);
+            border-top: 0;
+            border-left: 0;
+            left: 7px;
+            top: 4px;
+            transform: rotate(var(--r, 20deg));
+        }
+
+        &:checked {
+            --r: 43deg;
+        }
+
+    }
+
+    input[type="radio"] {
+        border-radius: 50%;
+
+        &:after {
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background: var(--active-inner);
+            opacity: 0;
+            transform: scale(var(--s, 0.7));
+        }
+
+        &:checked {
+            --s: 0.5;
+        }
+    }
+}
+
+.fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.textarea {
+    textarea {
+        resize: none;
+
+        &.auto {
+            overflow-y: hidden;
+        }
+    }
+
+    textarea {
+        -webkit-appearance: none;
+        box-sizing: border-box;
+        outline: none;
+        width: 100%;
+        height: 80px;
+        font-size: 14px;
+        font-family: "Inter";
+        line-height: 22px;
+        padding: 16px 20px;
+        border-radius: 15px;
+        color: #404660;
+        border: none;
+        background: #fff;
+        transition: box-shadow 0.25s;
+        box-shadow: inset 0 0 0 1px var(--border-color, #e1e6f9),
+            0 0 0 3px var(--focus-color, transparent);
+
+        &:focus {
+            --focus-color: #eceffc;
+        }
+
+        &:focus,
+        &:hover {
+            --border-color: #bbc1e1;
+        }
+    }
+
+    pre {
+        margin: 60px 0 0 0;
+        padding: 20px 24px;
+        border-radius: 15px;
+        background: #171827;
+
+        code {
+            font-family: "Fira Mono";
+            color: #bbc1e1;
+            line-height: 1.4;
+            font-size: 12px;
+
+            .token {
+                &.function {
+                    color: #5c86ff;
+                }
+
+                &.string {
+                    color: #f0b849;
+                }
+
+                &.parameter {
+                    color: #cb7dd0;
+                }
+
+                &.punctuation {
+                    color: #8a91b4;
+                }
+            }
+        }
+    }
+
+}

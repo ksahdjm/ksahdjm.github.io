@@ -1,0 +1,9 @@
+.active {
+    display: inline !important;
+    transition: display 0.3s ease-in;
+}
+
+.section {
+    display: none;
+    transition: display 0.3s ease-out;
+}
